@@ -1,6 +1,8 @@
 package com.auth1.auth.learning.controller;
 
+import com.auth1.auth.learning.Models.Token;
 import com.auth1.auth.learning.Models.user;
+import com.auth1.auth.learning.dtos.loginRequestDto;
 import com.auth1.auth.learning.dtos.signupRequestDto;
 import com.auth1.auth.learning.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,14 @@ public class userController {
         return userService.signup(requestDto.getName(),requestDto.getPassword(),
                 requestDto.getEmail());
         
+    }
+
+    @PostMapping("/login")
+    public Token login(@RequestBody loginRequestDto requestDto){
+
+        return userService.login(requestDto.getEmail() ,
+                requestDto.getPassword());
+
     }
 
 }
