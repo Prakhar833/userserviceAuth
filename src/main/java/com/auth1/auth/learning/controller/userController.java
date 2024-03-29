@@ -42,4 +42,10 @@ public class userController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @PostMapping("/validateToken/{token}")
+    public  boolean validateToken(@PathVariable("token") String token){
+
+        return userService.validateToken(token);
+    }
+
 }

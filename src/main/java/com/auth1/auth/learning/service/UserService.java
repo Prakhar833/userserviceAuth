@@ -77,4 +77,23 @@ public class UserService {
 
         tokenRepository.save(tokenObject);
     }
+
+    public boolean validateToken(String token) {
+
+         /*
+          To validate token
+          1. Check if token value is present
+          2. Check if token is not deleted
+          3. Check if token is not expired
+         */
+
+
+        Optional<Token> tokenOptional = tokenRepository.findByValueAndDeletedEqualsAndExpireAtGreaterThan(
+                token , false , new Date());
+
+        if(tokenOptional.isEmpty()){
+            return false;
+        }
+        return true;
+    }
 }
