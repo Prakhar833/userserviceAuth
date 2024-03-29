@@ -64,4 +64,17 @@ public class UserService {
         Date expireTime = calendarDate.getTime();
         return expireTime;
     }
+
+    public void logout(String token) {
+
+        Optional<Token> tokenOptional = tokenRepository.findByValueAndDeletedEquals(token , false);
+
+        if(tokenOptional.isEmpty()){
+            throw new RuntimeException("Token is Invalid");
+        }
+        Token tokenObject = tokenOptional.get();
+        tokenObject.setDeleted(true);
+
+        tokenRepository.save(tokenObject);
+    }
 }

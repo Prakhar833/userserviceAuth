@@ -19,5 +19,5 @@ public class Token extends BaseModel{
     private user user;
     private Date expireAt;
     private String value;
-//    private boolean deleted;
+    private boolean deleted;
 }
